@@ -36,4 +36,4 @@ dependencies[] = site_map
 dependencies[] = xmlsitemap
 dependencies[] = token
 dependencies[] = page_title
-
+dependencies[] = porterstemmer
