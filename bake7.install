@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Install, update and uninstall functions for the standard installation profile.
+ * Install, update and uninstall functions for the bake7 installation profile.
  */
 
 /**
@@ -173,7 +173,18 @@ function bake7_install() {
       'cache' => -1,
     ),
   );
-  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
+  $block_fields = array(
+    'module',
+    'delta',
+    'theme',
+    'status',
+    'weight',
+    'region',
+    'pages',
+    'cache',
+  );
+
+  $query = db_insert('block')->fields($block_fields);
   foreach ($blocks as $block) {
     $query->values($block);
   }
@@ -241,10 +252,10 @@ function bake7_install() {
   variable_set('node_options_page', array('status'));
   variable_set('comment_page', COMMENT_NODE_HIDDEN);
 
-  // Don't display date and author information for "Basic page" nodes by default.
+  // Don't display date and author information for Basic page nodes by default.
   variable_set('node_submitted_page', FALSE);
 
-  // Enable user picture support and set the default to a square thumbnail option.
+  // Enable user picture support and set the default to a square thumbnail.
   variable_set('user_pictures', '1');
   variable_set('user_picture_dimensions', '1024x1024');
   variable_set('user_picture_file_size', '800');
@@ -253,7 +264,8 @@ function bake7_install() {
   // Default to *not* allow users to register.
   variable_set('user_register', USER_REGISTER_ADMINISTRATORS_ONLY);
 
-  // Create a default vocabulary named "Tags", enabled for the 'article' content type.
+  // Create a default vocabulary named "Tags", enabled for the 'article'
+  // content type.
   $description = st('Use tags to group articles on similar topics into categories.');
   $vocabulary = (object) array(
     'name' => st('Tags'),
@@ -303,8 +315,9 @@ function bake7_install() {
   field_create_instance($instance);
 
 
-  // Create an image field named "Image", enabled for the 'article' content type.
-  // Many of the following values will be defaulted, they're included here as an illustrative example.
+  // Create an image field named Image, enabled for the article content type.
+  // Many of the following values will be defaulted, they're included here
+  // as an illustrative example.
   // See http://api.drupal.org/api/function/field_create_field/7
 
   $field = array(
@@ -325,7 +338,8 @@ function bake7_install() {
   field_create_field($field);
 
 
-  // Many of the following values will be defaulted, they're included here as an illustrative examples.
+  // Many of the following values will be defaulted, they're included here
+  // as an illustrative examples.
   // See http://api.drupal.org/api/function/field_create_instance/7
   $instance = array(
     'field_name' => 'field_image',
@@ -373,10 +387,24 @@ function bake7_install() {
 
   // Enable default permissions for system roles.
   $filtered_html_permission = filter_permission_name($filtered_html_format);
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content', 'access comments', $filtered_html_permission));
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content', 'access comments', 'post comments', 'skip comment approval', $filtered_html_permission));
+  $anonymous_permissions = array(
+    'access content',
+    'access comments',
+    $filtered_html_permission,
+  );
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, $anonymous_permissions);
 
-  // Create a default role for site administrators, with all available permissions assigned.
+  $authenticated_permissions = array(
+    'access content',
+    'access comments',
+    'post comments',
+    'skip comment approval',
+    $filtered_html_permission,
+  );
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $authenticated_permissions);
+
+  // Create a default role for site administrators, with all available
+  // permissions assigned.
   $admin_role = new stdClass();
   $admin_role->name = 'administrator';
   $admin_role->weight = 2;
