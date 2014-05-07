@@ -33,6 +33,7 @@ dependencies[] = logintoboggan
 dependencies[] = pathauto
 dependencies[] = search404
 dependencies[] = site_map
+dependencies[] = strongarm
 dependencies[] = xmlsitemap
 dependencies[] = token
 dependencies[] = page_title
