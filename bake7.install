@@ -220,6 +220,8 @@ function bake7_install() {
     node_add_body_field($type);
   }
 
+  variable_set('pathauto_node_pattern', '[node:title]');
+
   // Insert default pre-defined RDF mapping into the database.
   $rdf_mappings = array(
     array(
