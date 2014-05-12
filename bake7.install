@@ -420,6 +420,26 @@ function bake7_install() {
     ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
     ->execute();
 
+  // Create a generic editor role with the ability to publish & create content.
+  $editor_permissions = array(
+    'access contextual links',
+    'access dashboard',
+    'use text format filtered_html',
+    'use text format full_html',
+    'access administration menu',
+    'administer taxonomy',
+    'view the administration theme',
+    'administer content',
+    'administer menu',
+    'administer comments',
+  );
+
+  $editor_role = new stdClass();
+  $editor_role->name = 'editor';
+  $editor_role->weight = 3;
+  user_role_save($editor_role);
+  user_role_grant_permissions($editor_role->rid, $editor_permissions);
+
   // Create a Home link in the main menu.
   $item = array(
     'link_title' => st('Home'),
