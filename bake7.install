@@ -429,7 +429,7 @@ function bake7_install() {
     'access administration menu',
     'administer taxonomy',
     'view the administration theme',
-    'administer content',
+    'administer nodes',
     'administer menu',
     'administer comments',
   );
