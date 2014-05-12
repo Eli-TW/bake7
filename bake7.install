@@ -432,6 +432,16 @@ function bake7_install() {
     'administer nodes',
     'administer menu',
     'administer comments',
+    'create article content',
+    'edit own article content',
+    'edit any article content',
+    'delete own article content',
+    'delete any article content',
+    'create page content',
+    'edit own page content',
+    'edit any page content',
+    'delete own page content',
+    'delete any page content',
   );
 
   $editor_role = new stdClass();
