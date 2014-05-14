@@ -25,6 +25,7 @@ dependencies[] = rdf
 dependencies[] = admin_menu
 dependencies[] = admin_menu_toolbar
 dependencies[] = ckeditor
+dependencies[] = clone
 dependencies[] = globalredirect
 dependencies[] = module_filter
 dependencies[] = imce
