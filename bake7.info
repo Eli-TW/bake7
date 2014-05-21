@@ -33,6 +33,7 @@ dependencies[] = features
 dependencies[] = globalredirect
 dependencies[] = imce
 dependencies[] = insert
+dependencies[] = jquery_update
 dependencies[] = logintoboggan
 dependencies[] = module_filter
 dependencies[] = page_title
