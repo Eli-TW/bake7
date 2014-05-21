@@ -69,7 +69,8 @@ function bake7_install() {
   filter_format_save($full_html_format);
 
   // Enable some standard blocks.
-  $default_theme = variable_get('theme_default', 'bootstrap');
+  $default_theme = 'bootstrap';
+  variable_set('theme_default', $default_theme);
   $admin_theme = 'seven';
   $blocks = array(
     array(
