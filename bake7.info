@@ -39,6 +39,7 @@ dependencies[] = module_filter
 dependencies[] = page_title
 dependencies[] = pathauto
 dependencies[] = porterstemmer
+dependencies[] = profile2
 dependencies[] = search404
 dependencies[] = site_map
 dependencies[] = strongarm
