@@ -31,6 +31,7 @@ dependencies[] = clone
 dependencies[] = entity
 dependencies[] = features
 dependencies[] = globalredirect
+dependencies[] = googleanalytics
 dependencies[] = imce
 dependencies[] = insert
 dependencies[] = jquery_update
